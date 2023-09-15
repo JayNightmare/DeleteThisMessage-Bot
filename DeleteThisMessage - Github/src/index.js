@@ -34,11 +34,12 @@ client.on("messageCreate", (message) => {
         return message.channel.bulkDelete(2)
     }
 
-    for (let x = 0; x < 5; x++) {
-        if (message.content.includes(badWords[x])) {
+    for (const badWord of badWords) {
+        if (message.content.includes(badWord)) {
+            console.log(`Bad word found: ${badWord}`);
             message.channel.send("PREPARE TO GET BANISHED TO THE SHADOW REALM");
-
             setTimeout(killBotMessages, 5000);
+            break;
         }
     }
 
